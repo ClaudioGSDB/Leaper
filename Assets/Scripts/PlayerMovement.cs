@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing;
     private float dashingPower = 18f;
     private float dashingTime = 0.2f;
-    private float dashingCooldown = 1f;
+    private float dashingCooldown = 0.5f;
 
     //Wall Sliding & Jumping
     private bool isWallSliding;
@@ -121,11 +121,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsWalled() && !IsGrounded() && horizontal != 0f)
         {
+            animator.SetBool("IsJumping", false);
+            animator.SetBool("IsWalled", true);
             isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
         }
         else
         {
+            animator.SetBool("IsWalled", false);
             isWallSliding = false;
         }
     }
