@@ -52,12 +52,14 @@ public class PlayerMovement : MonoBehaviour
 
         if(IsGrounded())
         {
+            animator.SetBool("IsGround", true);
             animator.SetFloat("Speed", Mathf.Abs(horizontal));
             animator.SetBool("IsJumping", false);
         }
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
+            animator.SetBool("IsGround", false);
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
             animator.SetBool("IsJumping", true);
         }
@@ -109,17 +111,18 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
     }
 
     private bool IsWalled()
     {
-        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+        return Physics2D.OverlapCircle(wallCheck.position, 0.1f, wallLayer);
     }
 
     private void WallSlide()
     {
-        if (IsWalled() && !IsGrounded() && horizontal != 0f)
+        //if (IsWalled() && !IsGrounded() && horizontal != 0f)
+        if (IsWalled() && !IsGrounded())
         {
             animator.SetBool("IsJumping", false);
             animator.SetBool("IsWalled", true);
@@ -208,10 +211,4 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         alive = true;
     }
-
-/*    private IEnumerator ReviveAnim()
-    {
-        
-
-    }*/
 }
