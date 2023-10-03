@@ -15,6 +15,8 @@ public class Collect : MonoBehaviour
         // Check if the colliding object is the player (you can use tags or layers for this).
         if (collision.CompareTag("Player") && !isCollected)
         {
+            collision.GetComponent<Powers>().incName = itemName;
+            collision.GetComponent<Powers>().incItem = itemValue;
             CollectItem();
         }
     }

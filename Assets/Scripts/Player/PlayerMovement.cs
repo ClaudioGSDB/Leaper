@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     //Moving
     private float horizontal;
     private float speed = 6f;
-    private float jumpingPower = 12f;
+    public float jumpingPower = 12f;
     private bool isFacingRight = true;
 
     //Dashing
