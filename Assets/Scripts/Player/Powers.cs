@@ -74,7 +74,9 @@ public class Powers : MonoBehaviour
             blue = 255;
             newColor = new Color(red / 255.0f, green / 255.0f, blue / 255.0f);
             sr.color = newColor;
-            //if()
+            if(gameobject){
+                gameobject.GetComponent<Collider2D>().enabled = false;
+            }
         }
         else if (incItem == 9)
         {
