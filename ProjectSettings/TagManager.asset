@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Spring
   - Water
+  - Badge
   layers:
   - Default
   - TransparentFX

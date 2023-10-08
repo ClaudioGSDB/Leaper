@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8496b664c2dd241a31315b03a3e102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 6
   jumpingPower: 12
   rb: {fileID: 3408721917772919164}
   groundCheck: {fileID: 3408721918323510658}
@@ -244,6 +245,8 @@ MonoBehaviour:
   state: 0
   incName: 
   incItem: 0
+  player: {fileID: 3408721917772919153}
+  waterSpeedMultiplier: 0
 --- !u!95 &3408721917772919167
 Animator:
   serializedVersion: 5

@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     //Moving
     private float horizontal;
-    private float speed = 6f;
+    public float speed = 6f;
     public float jumpingPower = 12f;
     private bool isFacingRight = true;
 
@@ -79,8 +79,6 @@ public class PlayerMovement : MonoBehaviour
         {
             
             StartCoroutine(DeathAnim());
-
-
         }
 
         //Debug.DrawRay(groundCheck.position, Vector2.down * 0.2f, Color.red); //Ground Checker for Visualization
@@ -105,18 +103,24 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
-
-        
     }
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+        return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.5f, 0.1f), 0, groundLayer);
     }
-
+    private void OnDrawGizmos()
+    {
+        //Gizmos.DrawWireSphere(groundCheck.position, 0.2f);
+        //Gizmos.DrawWireSphere(wallCheck.position, 0.1f);
+        Gizmos.DrawWireCube(groundCheck.position, new Vector2(0.5f, 0.1f));
+        Gizmos.DrawWireCube(wallCheck.position, new Vector2(0.1f, 0.3f));
+    }
     private bool IsWalled()
     {
-        return Physics2D.OverlapCircle(wallCheck.position, 0.1f, wallLayer);
+        //Physics2D.OverlapBox(wallCheck.position, new Vector2(0.1f, 0.3f), wallLayer);
+        return Physics2D.OverlapBox(wallCheck.position, new Vector2(0.1f, 0.3f), 0, wallLayer);
+        //return Physics2D.OverlapCircle(wallCheck.position, 0.1f, wallLayer);
     }
 
     private void WallSlide()

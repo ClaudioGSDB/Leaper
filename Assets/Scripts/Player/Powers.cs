@@ -18,6 +18,12 @@ public class Powers : MonoBehaviour
 
     private GameObject[] objectsToMod;
 
+    public GameObject player;
+    Rigidbody2D rb;
+    PlayerMovement mov;
+    //Water
+    public float waterSpeedMultiplier;
+
     /*
      * Badges:
      * 0 - Cave
@@ -38,7 +44,10 @@ public class Powers : MonoBehaviour
 
     private void Start()
     {
+        rb = player.GetComponent<Rigidbody2D>();
+        mov = player.GetComponent<PlayerMovement>();
         sr = GetComponent<SpriteRenderer>();
+        waterSpeedMultiplier = 0.5f;
         state = 5;
         incName = "";
         incItem = -1;
@@ -74,9 +83,6 @@ public class Powers : MonoBehaviour
             blue = 255;
             newColor = new Color(red / 255.0f, green / 255.0f, blue / 255.0f);
             sr.color = newColor;
-            if(gameobject){
-                gameobject.GetComponent<Collider2D>().enabled = false;
-            }
         }
         else if (incItem == 9)
         {
@@ -150,4 +156,12 @@ public class Powers : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (state == 8 && collision.CompareTag("Water"))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -mov.speed * waterSpeedMultiplier, float.MaxValue));
+        }
+    }  
 }
