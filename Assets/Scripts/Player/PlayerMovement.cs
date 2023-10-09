@@ -45,8 +45,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (isDashing || !alive)
         {
+            if (!alive)
+            {
+                rb.velocity = Vector2.zero;
+            }
+            
             return;
         }
+
 
         horizontal = Input.GetAxisRaw("Horizontal");
 

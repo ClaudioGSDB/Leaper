@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3408721917772919165}
   - component: {fileID: 3408721917772919166}
   - component: {fileID: 5657349474372321899}
+  - component: {fileID: 3750478265705620770}
   - component: {fileID: 3408721917772919167}
   - component: {fileID: 3408721917772919160}
   m_Layer: 8
@@ -62,7 +63,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3408721917772919153}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9, y: 0.01, z: 0}
+  m_LocalPosition: {x: 0.02, y: 0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -159,7 +160,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 3408721917772919153}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: f60e33b4f9d094245a25473fe378d973, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -221,7 +222,7 @@ MonoBehaviour:
   groundCheck: {fileID: 3408721918323510658}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 80
   tr: {fileID: 3408721917772919160}
   wallCheck: {fileID: 3408721917171387674}
   wallLayer:
@@ -247,6 +248,18 @@ MonoBehaviour:
   incItem: 0
   player: {fileID: 3408721917772919153}
   waterSpeedMultiplier: 0
+--- !u!114 &3750478265705620770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3408721917772919153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2e3c5f12b516c245a108830e749f691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &3408721917772919167
 Animator:
   serializedVersion: 5
@@ -405,8 +418,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3408721918323510657}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.12, z: 1}
+  m_LocalPosition: {x: 0, y: -0.494, z: 0}
+  m_LocalScale: {x: 0.5, y: 0, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3408721917772919155}
