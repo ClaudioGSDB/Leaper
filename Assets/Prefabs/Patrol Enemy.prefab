@@ -31,7 +31,7 @@ Transform:
   - {fileID: 3627321845373894206}
   - {fileID: 3627321843574896187}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3627321843574896166
 GameObject:
@@ -44,6 +44,8 @@ GameObject:
   - component: {fileID: 3627321843574896187}
   - component: {fileID: 3627321843574896164}
   - component: {fileID: 3627321843574896165}
+  - component: {fileID: 2766599027548684072}
+  - component: {fileID: 4040490140465660786}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -132,8 +134,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrolCenter: {fileID: 3627321845373894206}
   patrolSpeed: 200
-  patrolRadius: 1.5
+  patrolRadius: 2
   cornerPauseTime: 0
+--- !u!58 &2766599027548684072
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3627321843574896166}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.02068472, y: 0.010342121}
+  serializedVersion: 2
+  m_Radius: 0.42760324
+--- !u!114 &4040490140465660786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3627321843574896166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7781d455c72c84c98fe78fb9d4e2b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnPoint: {fileID: 0}
+  player: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!1 &3627321845373894207
 GameObject:
   m_ObjectHideFlags: 0

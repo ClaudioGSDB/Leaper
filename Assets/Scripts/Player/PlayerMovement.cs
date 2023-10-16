@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpingTime = 0.2f;
     private float wallJumpingCounter;
     private float wallJumpingDuration = 0.2f;
-    private Vector2 wallJumpingPower = new Vector2(8f, 16f);
+    private Vector2 wallJumpingPower = new Vector2(8f, 14f);
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -103,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
         if (isDashing || !alive)
         {
             return;
+
         }
 
         if (!isWallJumping)
@@ -115,6 +116,12 @@ public class PlayerMovement : MonoBehaviour
     {
         return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.5f, 0.1f), 0, groundLayer);
     }
+
+    private bool IsWalled()
+    {
+        return Physics2D.OverlapBox(wallCheck.position, new Vector2(0.1f, 0.3f), 0, wallLayer);
+        //return Physics2D.OverlapCircle(wallCheck.position, 0.1f, wallLayer);
+    }
     private void OnDrawGizmos()
     {
         //Gizmos.DrawWireSphere(groundCheck.position, 0.2f);
@@ -122,13 +129,6 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireCube(groundCheck.position, new Vector2(0.5f, 0.1f));
         Gizmos.DrawWireCube(wallCheck.position, new Vector2(0.1f, 0.3f));
     }
-    private bool IsWalled()
-    {
-        //Physics2D.OverlapBox(wallCheck.position, new Vector2(0.1f, 0.3f), wallLayer);
-        return Physics2D.OverlapBox(wallCheck.position, new Vector2(0.1f, 0.3f), 0, wallLayer);
-        //return Physics2D.OverlapCircle(wallCheck.position, 0.1f, wallLayer);
-    }
-
     private void WallSlide()
     {
         //if (IsWalled() && !IsGrounded() && horizontal != 0f)
