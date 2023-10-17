@@ -19,8 +19,11 @@ public class Health : MonoBehaviour
     {
         if (currentHealth > 0) // Check if the player still has health segments left
         {
-            currentHealth--; // Reduce the current health by one segment
-            healthSegments[currentHealth].enabled = false; // Disable the health segment in the UI
+            if (gameObject.GetComponent<PlayerMovement>().alive)
+            {
+                currentHealth--; // Reduce the current health by one segment
+                healthSegments[currentHealth].enabled = false; // Disable the health segment in the UI
+            }
         }
     }
 

@@ -6,12 +6,21 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPaused = false;
-
+    
     public GameObject pauseMenuUI;
+
+    //Badge State
+    public bool badgeCase;
+    public bool caveB;
+    public bool forestB;
+    public bool desertB;
+    public bool waterB;
+    public bool fireB;
 
     // Update is called once per frame
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameIsPaused)
@@ -21,7 +30,20 @@ public class PauseMenu : MonoBehaviour
             else
             {
                 Pause();
+                BadgeUpdate();
             }
+        }
+    }
+
+    private void BadgeUpdate()
+    {
+        if (badgeCase == true)
+        {
+            transform.Find("BadgeCase").gameObject.SetActive(true);
+        }
+        if(caveB == true)
+        {
+
         }
     }
 

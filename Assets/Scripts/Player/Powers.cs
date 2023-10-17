@@ -101,23 +101,24 @@ public class Powers : MonoBehaviour
         //Badge System
         if (incItem == 0)
         {
-
+            GameObject.Find("Canvas").transform.Find("Pause Menu").transform.Find("Badges").gameObject.SetActive(true);
+            GameObject.Find("Canvas").transform.Find("Pause Menu").transform.Find("Badges").transform.Find("CaveB").gameObject.SetActive(true);
         }
         else if (incItem == 1)
         {
-
+            GameObject.Find("Canvas").transform.Find("Pause Menu").transform.Find("Badges").gameObject.SetActive(true);
         }
         else if (incItem == 2)
         {
-
+            GameObject.Find("Canvas").transform.Find("Pause Menu").transform.Find("Badges").gameObject.SetActive(true);
         }
         else if (incItem == 3)
         {
-
+            GameObject.Find("Canvas").transform.Find("Pause Menu").transform.Find("Badges").gameObject.SetActive(true);
         }
         else if (incItem == 4)
         {
-
+            GameObject.Find("Canvas").transform.Find("Pause Menu").transform.Find("Badges").gameObject.SetActive(true);
         }
 
 /*        //Run at the end for reset

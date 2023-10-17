@@ -57,7 +57,6 @@ public class WaterSpring : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            Debug.Log("heyt");
             PlayerMovement player = other.gameObject.GetComponent<PlayerMovement>();
             Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
             var speed = rb.velocity;

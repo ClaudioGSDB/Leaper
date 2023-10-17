@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     //Moving
     private float horizontal;
     public float speed = 6f;
@@ -38,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public bool aliveTrig = true;
     public bool alive = true;
-
 
     void Update()
     {
@@ -102,6 +102,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isDashing || !alive)
         {
+            if (!alive)
+            {
+                rb.velocity = Vector2.zero;
+            }
             return;
 
         }
@@ -114,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.5f, 0.1f), 0, groundLayer);
+        return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.7f, 0.1f), 0, groundLayer);
     }
 
     private bool IsWalled()
@@ -126,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Gizmos.DrawWireSphere(groundCheck.position, 0.2f);
         //Gizmos.DrawWireSphere(wallCheck.position, 0.1f);
-        Gizmos.DrawWireCube(groundCheck.position, new Vector2(0.5f, 0.1f));
+        Gizmos.DrawWireCube(groundCheck.position, new Vector2(0.7f, 0.1f));
         Gizmos.DrawWireCube(wallCheck.position, new Vector2(0.1f, 0.3f));
     }
     private void WallSlide()
