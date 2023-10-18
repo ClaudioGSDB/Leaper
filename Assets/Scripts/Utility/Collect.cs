@@ -17,8 +17,8 @@ public class Collect : MonoBehaviour
         {
             if(itemName == "BadgeCase")
             {
-                Debug.Log("Here");
                 GameObject.Find("Canvas").transform.Find("Pause Menu").transform.Find("BadgeCase").gameObject.SetActive(true);
+                GameObject.Find("Canvas").GetComponent<PauseMenu>().badgeCase = true;
                 CollectItem();
             }
             else

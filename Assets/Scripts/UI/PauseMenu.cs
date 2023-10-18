@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public static PauseMenu Instance;
+
     public static bool gameIsPaused = false;
     
     public GameObject pauseMenuUI;
@@ -17,10 +19,29 @@ public class PauseMenu : MonoBehaviour
     public bool waterB;
     public bool fireB;
 
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            LoadNextScene();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            LoadPrevScene();
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameIsPaused)
@@ -30,21 +51,24 @@ public class PauseMenu : MonoBehaviour
             else
             {
                 Pause();
-                BadgeUpdate();
             }
         }
     }
-
-    private void BadgeUpdate()
+    public void LoadNextScene()
     {
-        if (badgeCase == true)
-        {
-            transform.Find("BadgeCase").gameObject.SetActive(true);
-        }
-        if(caveB == true)
-        {
+        // Get the current scene's build index
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-        }
+        // Load the next scene based on the current scene's build index
+        SceneManager.LoadScene(currentSceneIndex + 1);
+    }
+    public void LoadPrevScene()
+    {
+        // Get the current scene's build index
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        // Load the next scene based on the current scene's build index
+        SceneManager.LoadScene(currentSceneIndex - 1);
     }
 
     public void Resume()

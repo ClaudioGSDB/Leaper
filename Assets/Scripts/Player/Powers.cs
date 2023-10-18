@@ -103,6 +103,7 @@ public class Powers : MonoBehaviour
         {
             GameObject.Find("Canvas").transform.Find("Pause Menu").transform.Find("Badges").gameObject.SetActive(true);
             GameObject.Find("Canvas").transform.Find("Pause Menu").transform.Find("Badges").transform.Find("CaveB").gameObject.SetActive(true);
+            GameObject.Find("Canvas").GetComponent<PauseMenu>().caveB = true;
         }
         else if (incItem == 1)
         {

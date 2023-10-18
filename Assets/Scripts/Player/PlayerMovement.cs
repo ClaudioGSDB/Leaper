@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpingDuration = 0.2f;
     private Vector2 wallJumpingPower = new Vector2(8f, 14f);
 
+    private float wallClimbSpeed = 3f;
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -89,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Debug.DrawRay(groundCheck.position, Vector2.down * 0.2f, Color.red); //Ground Checker for Visualization
 
+        WallClimb();
         WallSlide();
         WallJump();
         if (!isWallJumping)
@@ -142,6 +145,22 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IsWalled", true);
             isWallSliding = true;
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+        }
+        else
+        {
+            animator.SetBool("IsWalled", false);
+            isWallSliding = false;
+        }
+    }
+
+    private void WallClimb()
+    {
+        if (IsWalled() && !IsGrounded() && Input.GetKey(KeyCode.W))
+        {
+            animator.SetBool("IsJumping", false);
+            animator.SetBool("IsWalled", true);
+            isWallSliding = true;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, wallClimbSpeed, float.MaxValue));
         }
         else
         {

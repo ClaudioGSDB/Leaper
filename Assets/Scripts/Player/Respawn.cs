@@ -10,7 +10,8 @@ public class Respawn : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameObject.Find("Player").GetComponent<Health>().TakeDamage();
+            //GameObject.Find("Player").GetComponent<Health>().TakeDamage();
+            GameObject.Find("Player").GetComponent<DeathCounter>().increaseDeath();
             StartCoroutine(DeathAnim());
         }
     }
