@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: e35af0804730cef499fa68838e8a7e0e
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Ewofi
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 31d622939eaa5a646b7961dc9d3fe891, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

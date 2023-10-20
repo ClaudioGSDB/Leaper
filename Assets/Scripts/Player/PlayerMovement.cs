@@ -9,11 +9,12 @@ public class PlayerMovement : MonoBehaviour
     //Moving
     private float horizontal;
     public float speed = 6f;
+    public float maxFallingSpeed = -30.0f;
     public float jumpingPower = 12f;
     private bool isFacingRight = true;
 
     //Dashing
-    private bool canDash = true;
+    public bool canDash = true;
     private bool isDashing;
     private float dashingPower = 18f;
     private float dashingTime = 0.2f;
@@ -29,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpingDuration = 0.2f;
     private Vector2 wallJumpingPower = new Vector2(8f, 14f);
 
-    private float wallClimbSpeed = 3f;
+    private float wallClimbSpeed = 5f;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -39,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
 
     public Animator animator;
+    private PolygonCollider2D[] colliders;
     public bool aliveTrig = true;
     public bool alive = true;
 
@@ -83,6 +85,11 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Dash());
         }
 
+        if(IsGrounded() || IsWalled())
+        {
+            canDash = true;
+        }
+
         if(aliveTrig == false)
         {
             
@@ -91,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Debug.DrawRay(groundCheck.position, Vector2.down * 0.2f, Color.red); //Ground Checker for Visualization
 
+        colliders = gameObject.GetComponents<PolygonCollider2D>();
         WallClimb();
         WallSlide();
         WallJump();
@@ -117,6 +125,12 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
+
+        if (rb.velocity.y < maxFallingSpeed)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, maxFallingSpeed);
+        }
+
     }
 
     private bool IsGrounded()
@@ -143,24 +157,44 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("IsJumping", false);
             animator.SetBool("IsWalled", true);
+            
+            //colliders[0].enabled = false;
+            //colliders[1].enabled = true;
+
             isWallSliding = true;
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+            if(horizontal == 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+            }
+            
         }
         else
         {
             animator.SetBool("IsWalled", false);
             isWallSliding = false;
+            //colliders[0].enabled = true;
+            //colliders[1].enabled = false;
         }
     }
 
     private void WallClimb()
     {
-        if (IsWalled() && !IsGrounded() && Input.GetKey(KeyCode.W))
+        if (IsWalled() && !IsGrounded())
         {
             animator.SetBool("IsJumping", false);
             animator.SetBool("IsWalled", true);
+
             isWallSliding = true;
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, wallClimbSpeed, float.MaxValue));
+            if (Input.GetKey(KeyCode.W) && horizontal != 0)
+            {
+                rb.velocity = new Vector2(0, Mathf.Clamp(rb.velocity.y, wallClimbSpeed, float.MaxValue));
+            }
+            else if(Input.GetKey(KeyCode.S) && horizontal != 0)
+            {
+                Debug.Log(rb.velocity);
+                rb.velocity = new Vector2(0, -wallClimbSpeed);
+            }
+            
         }
         else
         {
@@ -220,6 +254,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Dash()
     {
+        if (!canDash) yield break;
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;
@@ -231,7 +266,6 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = originalGravity;
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
-        canDash = true;
     }
 
     private IEnumerator DeathAnim()

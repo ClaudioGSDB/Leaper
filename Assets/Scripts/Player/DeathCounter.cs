@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DeathCounter : MonoBehaviour
 {
-    public Text deathText;
+    public TMP_Text deathText;
     public int deaths = 0;
 
     public void Start()
@@ -15,11 +16,15 @@ public class DeathCounter : MonoBehaviour
 
     public void UpdatedeathsText()
     {
-
+        if (gameObject.GetComponent<PlayerMovement>().alive)
+        {
+            deathText.text = "Deaths " + deaths;
+        }
     }
 
     public void increaseDeath()
     {
         deaths++;
+        UpdatedeathsText();
     }
 }

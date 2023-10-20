@@ -43,12 +43,12 @@ GameObject:
   - component: {fileID: 3408721917772919154}
   - component: {fileID: 3408721917772919164}
   - component: {fileID: 3408721917772919165}
+  - component: {fileID: 1640855723853483518}
   - component: {fileID: 3408721917772919166}
   - component: {fileID: 5657349474372321899}
-  - component: {fileID: 3750478265705620770}
+  - component: {fileID: 8624306638679730493}
   - component: {fileID: 3408721917772919167}
   - component: {fileID: 3408721917772919160}
-  - component: {fileID: 8624306638679730493}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -205,6 +205,59 @@ PolygonCollider2D:
       - {x: 0.37559754, y: -0.06793466}
       - {x: 0.25470936, y: 0.055268556}
   m_UseDelaunayMesh: 0
+--- !u!60 &1640855723853483518
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3408721917772919153}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.061756134, y: 0.12326191}
+      - {x: -0.0014562607, y: 0.06215839}
+      - {x: 0.0013370514, y: -0.43542024}
+      - {x: 0.05930519, y: -0.50210965}
+      - {x: 0.3749838, y: -0.49972102}
+      - {x: 0.3754158, y: -0.4774886}
+      - {x: 0.37524033, y: -0.4789364}
+      - {x: 0.3742113, y: 0.124212146}
+  m_UseDelaunayMesh: 0
 --- !u!114 &3408721917772919166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
+  maxFallingSpeed: -15
   jumpingPower: 12
   rb: {fileID: 3408721917772919164}
   groundCheck: {fileID: 3408721918323510658}
@@ -249,7 +303,7 @@ MonoBehaviour:
   incItem: 0
   player: {fileID: 3408721917772919153}
   waterSpeedMultiplier: 0
---- !u!114 &3750478265705620770
+--- !u!114 &8624306638679730493
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -258,14 +312,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3408721917772919153}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2e3c5f12b516c245a108830e749f691, type: 3}
+  m_Script: {fileID: 11500000, guid: 49097ccf46eb621469a1a9d99ea3293f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
-  healthSegments:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  deathText: {fileID: 0}
+  deaths: 0
 --- !u!95 &3408721917772919167
 Animator:
   serializedVersion: 5
@@ -399,18 +450,6 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 0
   m_ApplyActiveColorSpace: 0
---- !u!114 &8624306638679730493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3408721917772919153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49097ccf46eb621469a1a9d99ea3293f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3408721918323510657
 GameObject:
   m_ObjectHideFlags: 0

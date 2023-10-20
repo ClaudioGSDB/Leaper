@@ -27,10 +27,10 @@ public class EnemyPatrolLine : MonoBehaviour
 
 
         // Move towards target point
-        transform.position = Vector2.MoveTowards(transform.position, targetPoint.position, patrolSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, patrolSpeed * Time.deltaTime);
 
         // Check if close to target point and switch direction if necessary
-        if (Vector2.Distance(transform.position, targetPoint.position) < 0.1f)
+        if (Vector3.Distance(transform.position, targetPoint.position) < 0.1f)
         {
             movingToB = !movingToB;
             currentPauseTime = cornerPauseTime;
