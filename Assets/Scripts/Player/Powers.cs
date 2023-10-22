@@ -51,10 +51,23 @@ public class Powers : MonoBehaviour
         state = 5;
         incName = "";
         incItem = -1;
+        ChangeColor(255, 255, 255);
     }
 
     public void Update()
     {
+        if (!mov.alive)
+        {
+            return;
+        }
+        if (mov.canDash)
+        {
+            sr.color = newColor;
+        }
+        else
+        {
+            sr.color = newColor * 0.6f;
+        }
         
         if (incName != "")
         {
@@ -65,6 +78,11 @@ public class Powers : MonoBehaviour
         //Power Ups - Modify Character
         if (incItem == 5) //default - revert everything
         {
+            state = 5;
+            red = 0;
+            green = 0;
+            blue = 0;
+            ChangeColor(red, green, blue);
             RevertObj(objectsToMod);
         }
         else if (incItem == 6)
@@ -81,8 +99,7 @@ public class Powers : MonoBehaviour
             red = 80;
             green = 180;
             blue = 255;
-            newColor = new Color(red / 255.0f, green / 255.0f, blue / 255.0f);
-            sr.color = newColor;
+            ChangeColor(red, green, blue);
         }
         else if (incItem == 9)
         {
@@ -108,6 +125,14 @@ public class Powers : MonoBehaviour
         else if (incItem == 1)
         {
             GameObject.Find("Canvas").transform.Find("Pause Menu").transform.Find("Badges").gameObject.SetActive(true);
+            GameObject.Find("Canvas").transform.Find("Pause Menu").transform.Find("Badges").transform.Find("ForestB").gameObject.SetActive(true);
+            GameObject.Find("Canvas").GetComponent<PauseMenu>().forestB = true;
+            GameObject teleporters = GameObject.Find("Teleporters");
+            foreach (Transform child in teleporters.transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+            //GameObject.Find("Portal").GetComponent<SpriteRenderer>().enabled = true;
         }
         else if (incItem == 2)
         {
@@ -125,6 +150,12 @@ public class Powers : MonoBehaviour
 /*        //Run at the end for reset
         incName = "";
         incItem = -1;*/
+    }
+
+    private void ChangeColor(float red, float green, float blue)
+    {
+        newColor = new Color(red / 255.0f, green / 255.0f, blue / 255.0f);
+        sr.color = newColor;
     }
 
     //Modify Objects

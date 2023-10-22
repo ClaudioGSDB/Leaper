@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement Instance;
 
     //Moving
     private float horizontal;
     public float speed = 6f;
-    public float maxFallingSpeed = -30.0f;
+    public float maxFallingSpeed = -5.0f;
     public float jumpingPower = 12f;
     private bool isFacingRight = true;
 
@@ -43,6 +45,20 @@ public class PlayerMovement : MonoBehaviour
     private PolygonCollider2D[] colliders;
     public bool aliveTrig = true;
     public bool alive = true;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            GameObject oldPlayer = GameObject.Find("Player");
+            GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>().Follow = oldPlayer.transform;
+            return;
+        }
+        Instance = this;
+        
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Update()
     {
@@ -128,8 +144,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (rb.velocity.y < maxFallingSpeed)
         {
-            rb.velocity = new Vector2(rb.velocity.x, maxFallingSpeed);
+            rb.AddForce(new Vector2(0f, Physics2D.gravity.y * maxFallingSpeed));
         }
+        //Debug.Log(rb.velocity.y);
 
     }
 
@@ -270,6 +287,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator DeathAnim()
     {
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
         alive = false;
         animator.SetBool("Dead", true);
         
