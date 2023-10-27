@@ -71,7 +71,7 @@ Transform:
   - {fileID: 3408721918323510658}
   - {fileID: 3408721917171387674}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3408721917772919154
 SpriteRenderer:
@@ -93,7 +93,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c6e6fc85d17d31345be64ad673d07377, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -273,6 +273,7 @@ MonoBehaviour:
   speed: 6
   maxFallingSpeed: -15
   jumpingPower: 12
+  canDash: 1
   rb: {fileID: 3408721917772919164}
   groundCheck: {fileID: 3408721918323510658}
   groundLayer:
