@@ -324,7 +324,7 @@ Transform:
   - {fileID: 2566691404300986882}
   - {fileID: 4539051767328566528}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &8900133480619140778
 Grid:
@@ -1480,7 +1480,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 948599137
   m_SortingLayer: -1
-  m_SortingOrder: -5
+  m_SortingOrder: 10
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
