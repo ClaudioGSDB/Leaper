@@ -17,10 +17,12 @@ public class DoubleDash : MonoBehaviour
     {
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        transform.GetChild(0).gameObject.SetActive(false);
         //play some animation maybe
 
         yield return new WaitForSeconds(4);
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
         gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        transform.GetChild(0).gameObject.SetActive(true);
     }
 }
