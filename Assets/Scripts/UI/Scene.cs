@@ -21,4 +21,9 @@ public class Scene : MonoBehaviour
         // Load the next scene based on the current scene's build index
         SceneManager.LoadScene(currentSceneIndex + 1);
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
