@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -52,7 +53,10 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(gameObject);
             GameObject oldPlayer = GameObject.Find("Player");
-            GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>().Follow = oldPlayer.transform;
+            if(SceneManager.GetActiveScene().name != "Main Menu")
+            {
+                GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>().Follow = oldPlayer.transform;
+            }
             return;
         }
         Instance = this;

@@ -35,11 +35,12 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            LoadNextScene();
+            LoadPrevScene();
         }
+
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            LoadPrevScene();
+            LoadNextScene();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -88,6 +89,8 @@ public class PauseMenu : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1f;
+        pauseMenuUI.SetActive(false);
+        gameIsPaused = false;
         SceneManager.LoadScene("Main Menu");
     }
 
