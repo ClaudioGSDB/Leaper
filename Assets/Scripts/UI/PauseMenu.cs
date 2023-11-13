@@ -43,7 +43,7 @@ public class PauseMenu : MonoBehaviour
             LoadNextScene();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex != 0 )
         {
             if (gameIsPaused)
             {
