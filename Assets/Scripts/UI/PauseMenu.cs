@@ -11,6 +11,8 @@ public class PauseMenu : MonoBehaviour
     
     public GameObject pauseMenuUI;
 
+    public GameObject mainMenu;
+
     //Badge State
     public bool badgeCase;
     public bool caveB;
@@ -54,14 +56,25 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
+
+        // if (SceneManager.GetActiveScene().buildIndex >= 1)
+        // {
+        //     mainMenu.SetActive(false);
+        // }
+        // else
+        // {
+        //     pauseMenuUI.SetActive(false);
+        // }
     }
     public void LoadNextScene()
     {
         // Get the current scene's build index
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
+        
         // Load the next scene based on the current scene's build index
         SceneManager.LoadScene(currentSceneIndex + 1);
+
+        mainMenu.SetActive(false);
     }
     public void LoadPrevScene()
     {
@@ -91,6 +104,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         pauseMenuUI.SetActive(false);
         gameIsPaused = false;
+        mainMenu.SetActive(true);
         SceneManager.LoadScene("Main Menu");
     }
 
