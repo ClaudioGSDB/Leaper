@@ -86,6 +86,12 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("Speed", Mathf.Abs(horizontal));
             animator.SetBool("IsJumping", false);
         }
+        else if(!IsGrounded() && !IsWalled())
+        {
+            animator.SetBool("IsGround", false);
+            animator.SetFloat("Speed", Mathf.Abs(horizontal));
+            animator.SetBool("IsJumping", true);
+        }
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
