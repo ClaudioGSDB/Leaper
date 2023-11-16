@@ -32,8 +32,8 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpingCounter;
     private float wallJumpingDuration = 0.2f;
     private Vector2 wallJumpingPower = new Vector2(8f, 14f);
-
     private float wallClimbSpeed = 5f;
+    private bool hasJumped = false;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -82,8 +82,13 @@ public class PlayerMovement : MonoBehaviour
 
         if(IsGrounded())
         {
+            hasJumped = false;
             animator.SetBool("IsGround", true);
             animator.SetFloat("Speed", Mathf.Abs(horizontal));
+            if(Mathf.Abs(horizontal) == 1)
+            {
+                FindObjectOfType<AudioManager>().Play("SlimeWalk");
+            }
             animator.SetBool("IsJumping", false);
         }
         else if(!IsGrounded() && !IsWalled())
@@ -98,6 +103,11 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IsGround", false);
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
             animator.SetBool("IsJumping", true);
+            if(!hasJumped)
+            {
+                FindObjectOfType<AudioManager>().Play("SlimeJump");
+                hasJumped = true;
+            }
         }
 
         //hold for higher jump
