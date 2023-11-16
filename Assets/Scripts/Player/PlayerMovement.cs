@@ -228,7 +228,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if(Input.GetKey(KeyCode.S) && horizontal != 0)
             {
-                Debug.Log(rb.velocity);
+                //Debug.Log(rb.velocity);
                 rb.velocity = new Vector2(0, -wallClimbSpeed);
             }
             

@@ -6,10 +6,20 @@ using Cinemachine;
 public class CameraChanger : MonoBehaviour
 {
     public CinemachineVirtualCamera virtualCamera;
-    public GameObject camera1;
-    public GameObject camera2;
-    public GameObject MainMenu;
-    public GameObject Credits;
+    private GameObject camera1;
+    private GameObject camera2;
+    private GameObject MainMenu;
+    private GameObject Credits;
+
+    private void Start()
+    {
+        // Find objects by name in the hierarchy
+        camera1 = GameObject.Find("Camera Location 1");
+        camera2 = GameObject.Find("Camera Location 2");
+        MainMenu = GameObject.Find("Main Menu");
+        Credits = GameObject.Find("Credits");
+    }
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
