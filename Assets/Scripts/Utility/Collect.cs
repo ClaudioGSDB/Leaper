@@ -38,7 +38,7 @@ public class Collect : MonoBehaviour
         Destroy(gameObject);
 
         // Optionally, you can update the player's score or inventory.
-/*        player playerController = FindObjectOfType<Player>();
+    /*  player playerController = FindObjectOfType<Player>();
         if (playerController != null)
         {
             playerController.AddScore(itemValue);

@@ -11,6 +11,8 @@ public class Scene : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             LoadNextScene();
+            collision.GetComponent<Powers>().incName = "";
+            collision.GetComponent<Powers>().incItem = 5;
         }
     }
     public void LoadNextScene()

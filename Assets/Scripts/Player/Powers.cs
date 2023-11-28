@@ -79,11 +79,12 @@ public class Powers : MonoBehaviour
         if (incItem == 5) //default - revert everything
         {
             state = 5;
-            red = 0;
-            green = 0;
-            blue = 0;
+            red = 255;
+            green = 255;
+            blue = 255;
             ChangeColor(red, green, blue);
             RevertObj(objectsToMod);
+            incItem = -1;
         }
         else if (incItem == 6)
         {
@@ -100,6 +101,7 @@ public class Powers : MonoBehaviour
             green = 180;
             blue = 255;
             ChangeColor(red, green, blue);
+            incItem = -1;
         }
         else if (incItem == 9)
         {
